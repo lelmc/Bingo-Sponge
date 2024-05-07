@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
+        maven { url = 'https://maven.minecraftforge.net' }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+    }
+}
+plugins {
+    id 'org.spongepowered.plugin' version '0.9.0'
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+
+group = 'cn.lelmc'
+version = '1.0-SNAPSHOT'
+
+dependencies {
+    compileOnly 'org.spongepowered:spongeforge:1.12.2-2838-7.4.0'
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
+    implementation files('Pixelmon-1.12.2-8.4.2-server.jar')
+}
+
+sponge.plugin.id = 'bingo-sponge'
+
+def targetJavaVersion = 8
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        options.release = targetJavaVersion
+    }
+}
+
+minecraft {
+    mappings channel: 'stable', version: '39-1.12'
+
+}
