@@ -21,7 +21,7 @@ version = '1.0-SNAPSHOT'
 dependencies {
     compileOnly 'org.spongepowered:spongeforge:1.12.2-2838-7.4.0'
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
-    implementation files('Pixelmon-1.12.2-8.4.2-server.jar')
+    implementation files('lib/Pixelmon-1.12.2-8.4.2-server.jar')
 }
 
 sponge.plugin.id = 'bingo-sponge'
