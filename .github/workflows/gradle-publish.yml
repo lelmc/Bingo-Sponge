@@ -7,7 +7,11 @@
 
 name: 打包项目
 
-on: push
+on:
+  push:
+    #branches: [ main ]
+  #pull_request:
+    #branches: [ main ]
 
 jobs:
   build:
@@ -37,5 +41,4 @@ jobs:
       - name: Upload JAR file
         uses: actions/upload-artifact@v4
         with:
-          name: 插件压缩包(请解压使用jar文件)
           path: build/libs/*.jar
