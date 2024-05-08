@@ -34,8 +34,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload JAR file
+        uses: actions/upload-artifact@v2
         with:
-          name: Package
-          path: build/libs
+          name: test
+          path: build/libs/*.jar #build/libs/Bingo-Sponge-1.0-SNAPSHOT.jar
