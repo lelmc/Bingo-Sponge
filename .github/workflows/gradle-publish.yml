@@ -9,9 +9,9 @@ name: 打包项目
 
 on:
   push:
-    #branches: [ main ]
+  #branches: [ main ]
   #pull_request:
-    #branches: [ main ]
+  #branches: [ main ]
 
 jobs:
   build:
@@ -41,15 +41,14 @@ jobs:
       - name: Upload JAR file
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.os }}
+          name: ${{ github.repository_name }}
           path: build/libs/*.jar
 
 
       # create release
-      - name: release
+      - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: "build/libs/*.jar"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          files: build/libs/*.jar
+          draft: true
+          fail_on_unmatched_files: true
