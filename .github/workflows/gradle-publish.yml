@@ -41,7 +41,7 @@ jobs:
       - name: Upload JAR file
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.repository_name }}
+          name: Plugins
           path: build/libs/*.jar
 
 
