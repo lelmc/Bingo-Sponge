@@ -37,5 +37,5 @@ jobs:
       - name: Upload JAR file
         uses: actions/upload-artifact@v4
         with:
-          name: test
-          path: build/libs/*.jar #build/libs/Bingo-Sponge-1.0-SNAPSHOT.jar
+          name: 插件压缩包(请解压使用jar文件)
+          path: build/libs/*.jar
