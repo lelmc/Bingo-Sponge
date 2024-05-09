@@ -44,7 +44,6 @@ jobs:
           name: Plugins
           path: build/libs/*.jar
 
-
       # create release
       - name: Release
         uses: softprops/action-gh-release@v1
