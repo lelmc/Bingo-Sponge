@@ -1,17 +1,12 @@
 # This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
-# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
 
 name: 打包项目
 
 on:
   push:
-  #branches: [ main ]
-  #pull_request:
-  #branches: [ main ]
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -43,28 +38,3 @@ jobs:
         with:
           name: Plugins
           path: build/libs/*.jar
-
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Minecraft Release ${{ github.ref }}
-          body: |
-            Changes in this Minecraft Release
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/libs/*.jar  # 替换为你的 Minecraft JAR 包路径
-          asset_name: Bingo-Sponge.jar  # 上传后的文件名
-          asset_content_type: application/java-archive
